@@ -1,44 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Валентинка для Ангелины ❤️</title>
 <style>
-body {
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:radial-gradient(circle at center,#ffe6d0,#fff5e6);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  overflow:hidden;
-  perspective:1200px;
-}
-
-body.opened{
-  background:radial-gradient(circle at center,#1a0015,#330022);
-}
-
-/* Затемнение фона */
-.overlay{
-  position:fixed;
-  top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  opacity:0;
-  pointer-events:none;
-  transition:1s;
-}
-body.opened .overlay{
-  opacity:1;
-}
-
-/* Контейнер сцены */
+/* Контейнер сцены оставляем прежним */
 .scene{
   position:relative;
-  width:400px;  /* увеличили размер сцены */
-  height:260px;
+  width:500px;   /* размер сцены */
+  height:350px;
 }
 
 /* Свет вокруг конверта */
@@ -46,8 +11,8 @@ body.opened .overlay{
   position:absolute;
   top:50%; left:50%;
   transform:translate(-50%, -50%);
-  width:420px;  /* чуть больше конверта */
-  height:280px;
+  width:520px;  /* чуть больше конверта */
+  height:370px;
   border-radius:15px;
   box-shadow:0 0 60px rgba(255,105,180,0.5);
   opacity:1;
@@ -58,13 +23,14 @@ body.opened .overlay{
 /* Конверт */
 .envelope{
   position:absolute;
-  width:100%;
-  height:100%;
+  width:500px;  /* увеличили конверт */
+  height:350px;
   transform-style:preserve-3d;
   transition:transform 1s ease;
   z-index:2;
 }
 
+/* Крышка конверта */
 .flap{
   position:absolute;
   top:0; left:0;
@@ -76,28 +42,13 @@ body.opened .overlay{
   backface-visibility:hidden;
 }
 
-.envelope.open .flap{
-  transform:rotateX(-160deg);
-}
-
-/* Стикер */
-.sticker{
-  position:absolute;
-  width:100px; /* увеличили размер */
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:3;
-  pointer-events:none;
-}
-
 /* Лист */
 .letter{
   position:absolute;
   top:50%; left:50%;
-  transform:translate(-50%, 90px) scale(0.85) rotateX(15deg); /* немного смещён для эффекта глубины */
-  width:400px;   /* теперь равен ширине сцены/конверта */
-  height:260px;
+  transform:translate(-50%, 100px) scale(0.85) rotateX(15deg);
+  width:500px;   /* равен ширине конверта */
+  height:350px;
   background:linear-gradient(#fff4d9,#fff0c1);
   border-radius:12px;
   padding:25px;
@@ -118,97 +69,23 @@ body.opened .overlay{
   opacity:1;
 }
 
-/* Кнопка музыки */
-.music-btn{
-  position:fixed; bottom:20px; right:20px;
-  background:rgba(255,255,255,0.2);
-  backdrop-filter:blur(10px);
-  border:none;
-  padding:12px 18px;
-  border-radius:30px;
-  color:white;
-  font-size:14px;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(255,105,180,0.4);
-  transition:0.3s;
-}
-.music-btn:hover{
-  transform:scale(1.1);
+/* Стикер */
+.sticker{
+  position:absolute;
+  width:120px; /* увеличили */
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  pointer-events:none;
 }
 
-/* Сердечки */
-.heart{
-  position:fixed;
-  bottom:-10px;
-  font-size:18px;
-  opacity:0.7;
-  animation:float 10s linear forwards;
-}
-@keyframes float{
-  0%{transform:translateY(0);opacity:0;}
-  10%{opacity:0.8;}
-  100%{transform:translateY(-110vh);opacity:0;}
-}
-
+/* Медиазапрос для мобильных */
 @media(max-width:480px){
   .scene{width:300px;height:200px;}
+  .envelope{width:300px;height:200px;}
   .letter{width:300px;height:200px;font-size:14px;}
   .sticker{width:80px;top:8px;}
   .glow{width:320px;height:220px;}
 }
 </style>
-</head>
-<body>
-
-<div class="overlay"></div>
-
-<div class="scene">
-  <div class="glow"></div>
-  <div class="envelope" id="env" onclick="openEnvelope()">
-    <div class="flap"></div>
-    <img src="envelope.png" class="sticker">
-    <div class="letter">
-Здоров🤝
-В общому ти казала нич недарити,но я так неможу і шось придумав,незнаву чи нормально чи нєт
-Туй пару строчок про тебе:
-
-She looks just like a dream
-The prettiest girl I've ever seen
-From the cover of a magazine
-
-Нич бiльше толкового я незнав шо придумати i такоэ не банальноэ
-    </div>
-  </div>
-</div>
-
-<button class="music-btn" onclick="toggleMusic()">🎵 Музыка</button>
-<audio id="music" src="music.mp3"></audio>
-
-<script>
-let opened=false;
-function openEnvelope(){
-  if(opened) return;
-  opened=true;
-  document.getElementById("env").classList.add("open");
-  document.body.classList.add("opened");
-}
-function toggleMusic(){
-  let music=document.getElementById("music");
-  if(music.paused){music.play();}else{music.pause();}
-}
-
-/* Сердечки */
-setInterval(()=>{
-  let heart=document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML="💖";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=(14+Math.random()*10)+"px";
-  heart.style.animationDuration=(8+Math.random()*4)+"s";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),12000);
-},3000);
-</script>
-
-</body>
-</html>
