@@ -99,13 +99,14 @@ body.opened .overlay{
     pointer-events:none;
 }
 
-/* Лист */
+/* Лист сверху конверта */
 .letter{
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%, 40px);
-    width:260px;
+    transform:translate(-50%, -50%);
+    width:300px; /* равен ширине конверта */
+    height:200px; /* равен высоте конверта */
     background:linear-gradient(#fff4d9,#fff0c1);
     padding:20px;
     border-radius:12px;
@@ -116,22 +117,26 @@ body.opened .overlay{
     border:2px solid #d4af7f;
     filter:drop-shadow(0 0 5px rgba(0,0,0,0.2));
     z-index:3;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:left;
 }
 
 .envelope.open .letter{
-    transform:translate(-50%, -10px);
+    transform:translate(-50%, -50%); /* центрируется строго над конвертом */
     opacity:1;
 }
 
-/* Свет вокруг конверта */
+/* Свет вокруг конверта по размерам конверта + немного больше */
 .glow{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
-    width:360px;
-    height:260px;
-    border-radius:50%;
+    width:320px; /* чуть больше ширины конверта */
+    height:220px; /* чуть больше высоты конверта */
+    border-radius:15px; /* повторяем форму конверта */
     box-shadow:0 0 60px rgba(255,105,180,0.5);
     opacity:0;
     transition:1s;
@@ -177,8 +182,9 @@ body.opened .overlay{
 
 @media(max-width:480px){
     .envelope-container{width:240px;height:160px;}
-    .letter{width:210px;font-size:14px;}
+    .letter{width:240px;height:160px;font-size:14px;}
     .sticker{width:60px;top:8px;}
+    .glow{width:260px;height:180px;}
 }
 </style>
 </head>
