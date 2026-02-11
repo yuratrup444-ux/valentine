@@ -80,13 +80,12 @@ body.opened .overlay{
   transform:rotateX(-160deg);
 }
 
-/* Стикер */
 .sticker{
   position:absolute;
-  width:300px;
-  top:200px;
-  left:50%;
-  transform:translateX(-50%);
+  width:300px;        /* размер стикера, можно подкорректировать */
+  top:50%;            /* по центру вертикально */
+  left:50%;           /* по центру горизонтально */
+  transform:translate(-50%, -50%); /* центрирование по обоим осям */
   z-index:3;
   pointer-events:none;
 }
@@ -212,4 +211,5 @@ setInterval(()=>{
 
 </body>
 </html>
+
 
