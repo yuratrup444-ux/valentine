@@ -4,180 +4,171 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Валентинка для Ангелины ❤️</title>
-
 <style>
 body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at center,#ffe6d0,#fff5e6);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
-transition:0.8s;
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:radial-gradient(circle at center,#ffe6d0,#fff5e6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    transition:0.8s;
 }
 
 body.opened{
-background:radial-gradient(circle at center,#1a0015,#330022);
-}
-
-.scene{
-perspective:1200px;
-text-align:center;
-position:relative;
-}
-
-.envelope{
-position:relative;
-width:300px;
-height:200px;
-transform-style:preserve-3d;
-transition:1s ease;
-cursor:pointer;
-}
-
-.envelope img{
-width:100%;
-border-radius:15px;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
-
-.flap{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#ffd6b6; /* фон крышки */
-border-radius:15px;
-transform-origin:top;
-transition:1s ease;
-backface-visibility:hidden;
-}
-
-.envelope.open .flap{
-transform:rotateX(-160deg);
-}
-
-.sticker{
-position:absolute;
-width:80px;
-top:10px;
-right:110px;
-z-index:5;
-pointer-events:none;
-}
-
-.letter{
-position:absolute;
-bottom:20px;
-left:50%;
-transform:translateX(-50%) translateY(40px);
-width:260px;
-background:linear-gradient(#fff4d9,#fff0c1);
-padding:20px;
-border-radius:12px;
-box-shadow:0 10px 40px rgba(0,0,0,0.2);
-opacity:0;
-transition:1.4s ease, transform 1.4s ease;
-white-space:pre-line;
-border:2px solid #d4af7f;
-filter:drop-shadow(0 0 5px rgba(0,0,0,0.2));
-clip-path:polygon(
-0% 0%, 100% 0%, 100% 100%, 0% 100%
-);
-}
-
-.envelope.open .letter{
-transform:translateX(-50%) translateY(-220px) rotate(-1deg);
-opacity:1;
-}
-
-/* Эффект «обожженных краев» */
-.letter::before{
-content:'';
-position:absolute;
-top:0;left:0;right:0;bottom:0;
-border-radius:12px;
-box-shadow:inset 0 0 10px rgba(0,0,0,0.2);
-pointer-events:none;
-}
-
-/* Мягкое свечение */
-.glow{
-position:absolute;
-width:320px;
-height:220px;
-border-radius:20px;
-box-shadow:0 0 60px rgba(255,105,180,0.6);
-opacity:0;
-transition:1s;
-}
-
-.envelope.open + .glow{
-opacity:1;
-}
-
-/* Кнопка музыки */
-.music-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:rgba(255,255,255,0.2);
-backdrop-filter:blur(10px);
-border:none;
-padding:12px 18px;
-border-radius:30px;
-color:white;
-font-size:14px;
-cursor:pointer;
-box-shadow:0 0 20px rgba(255,105,180,0.4);
-transition:0.3s;
-}
-
-.music-btn:hover{
-transform:scale(1.1);
+    background:radial-gradient(circle at center,#1a0015,#330022);
 }
 
 /* Затемнение фона */
 .overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-opacity:0;
-pointer-events:none;
-transition:1s;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    pointer-events:none;
+    transition:1s;
 }
-
 body.opened .overlay{
-opacity:1;
+    opacity:1;
 }
 
-/* Редкие сердечки */
+.scene{
+    perspective:1200px;
+    text-align:center;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.envelope-container{
+    position:relative;
+    width:300px;
+    height:200px;
+}
+
+.envelope{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:1s ease;
+    cursor:pointer;
+}
+
+.envelope img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#ffd6b6; /* фон крышки */
+    border-radius:15px;
+    transform-origin:top;
+    transition:1s ease;
+    backface-visibility:hidden;
+}
+
+.envelope.open .flap{
+    transform:rotateX(-160deg);
+}
+
+.sticker{
+    position:absolute;
+    width:80px;
+    top:10px;
+    right:110px;
+    z-index:5;
+    pointer-events:none;
+}
+
+.letter{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, 50px);
+    width:260px;
+    background:linear-gradient(#fff4d9,#fff0c1);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
+    opacity:0;
+    transition:1.4s ease, transform 1.4s ease;
+    white-space:pre-line;
+    border:2px solid #d4af7f;
+    filter:drop-shadow(0 0 5px rgba(0,0,0,0.2));
+}
+
+.envelope.open .letter{
+    transform:translate(-50%, -220px) rotate(-1deg);
+    opacity:1;
+}
+
+/* Мягкое свечение */
+.glow{
+    position:absolute;
+    width:320px;
+    height:220px;
+    border-radius:20px;
+    box-shadow:0 0 60px rgba(255,105,180,0.6);
+    opacity:0;
+    transition:1s;
+}
+.envelope.open + .glow{
+    opacity:1;
+}
+
+/* Кнопка музыки */
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    border:none;
+    padding:12px 18px;
+    border-radius:30px;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(255,105,180,0.4);
+    transition:0.3s;
+}
+.music-btn:hover{
+    transform:scale(1.1);
+}
+
+/* Сердечки */
 .heart{
-position:fixed;
-bottom:-10px;
-font-size:18px;
-opacity:0.7;
-animation:float 10s linear forwards;
+    position:fixed;
+    bottom:-10px;
+    font-size:18px;
+    opacity:0.7;
+    animation:float 10s linear forwards;
 }
-
 @keyframes float{
-0%{transform:translateY(0);opacity:0;}
-10%{opacity:0.8;}
-100%{transform:translateY(-110vh);opacity:0;}
+    0%{transform:translateY(0);opacity:0;}
+    10%{opacity:0.8;}
+    100%{transform:translateY(-110vh);opacity:0;}
 }
 
 @media(max-width:480px){
-.envelope{width:240px;height:160px;}
-.letter{width:210px;font-size:14px;}
-.sticker{width:60px;top:8px;right:80px;}
+    .envelope-container{width:240px;height:160px;}
+    .letter{width:210px;font-size:14px;}
+    .sticker{width:60px;top:8px;right:80px;}
 }
-
 </style>
 </head>
 <body>
@@ -185,12 +176,11 @@ animation:float 10s linear forwards;
 <div class="overlay"></div>
 
 <div class="scene">
-<div class="envelope" id="env" onclick="openEnvelope()">
-<div class="flap"></div>
-
-<img src="envelope.png" class="sticker">
-
-<div class="letter">
+    <div class="envelope-container">
+        <div class="envelope" id="env" onclick="openEnvelope()">
+            <div class="flap"></div>
+            <img src="envelope.png" class="sticker">
+            <div class="letter">
 Здоров🤝
 В общому ти казала нич недарити,но я так неможу і шось придумав,незнаву чи нормально чи нєт
 Туй пару строчок про тебе:
@@ -200,10 +190,10 @@ The prettiest girl I've ever seen
 From the cover of a magazine
 
 Нич бiльше толкового я незнав шо придумати i такоэ не банальноэ
-</div>
-</div>
-
-<div class="glow"></div>
+            </div>
+        </div>
+        <div class="glow"></div>
+    </div>
 </div>
 
 <button class="music-btn" onclick="toggleMusic()">🎵 Музыка</button>
@@ -211,33 +201,27 @@ From the cover of a magazine
 
 <script>
 let opened=false;
-
 function openEnvelope(){
-if(opened) return;
-opened=true;
-document.getElementById("env").classList.add("open");
-document.body.classList.add("opened");
+    if(opened) return;
+    opened=true;
+    document.getElementById("env").classList.add("open");
+    document.body.classList.add("opened");
 }
-
 function toggleMusic(){
-let music=document.getElementById("music");
-if(music.paused){
-music.play();
-}else{
-music.pause();
-}
+    let music=document.getElementById("music");
+    if(music.paused){music.play();}else{music.pause();}
 }
 
 /* Сердечки */
 setInterval(()=>{
-let heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(14+Math.random()*10)+"px";
-heart.style.animationDuration=(8+Math.random()*4)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),12000);
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(14+Math.random()*10)+"px";
+    heart.style.animationDuration=(8+Math.random()*4)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),12000);
 },3000);
 </script>
 
